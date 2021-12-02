@@ -15,5 +15,4 @@ defmodule Poker.DataCase do
   """
 
   use ExUnit.CaseTemplate
-
 end

@@ -2,13 +2,13 @@ defmodule PokerWeb.Router do
   use PokerWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-    plug :put_user_token
-    plug PokerWeb.Plugs.Locale
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_flash)
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(:put_user_token)
+    plug(PokerWeb.Plugs.Locale)
   end
 
   defp put_user_token(conn, _) do
@@ -17,17 +17,17 @@ defmodule PokerWeb.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/", PokerWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    get "/", PageController, :index
+    get("/", PageController, :index)
 
-    resources "/rooms", RoomController, only: [:create, :show, :index]
+    resources("/rooms", RoomController, only: [:create, :show, :index])
 
-    get "/locale", LocaleController, :update
+    get("/locale", LocaleController, :update)
   end
 
   # Other scopes may use custom stacks.
@@ -46,8 +46,8 @@ defmodule PokerWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-    pipe_through :browser
-    live_dashboard "/dashboard", metrics: PokerWeb.Telemetry
-  end
+      pipe_through(:browser)
+      live_dashboard("/dashboard", metrics: PokerWeb.Telemetry)
+    end
   end
 end

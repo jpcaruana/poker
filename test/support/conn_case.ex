@@ -30,5 +30,4 @@ defmodule PokerWeb.ConnCase do
       @endpoint PokerWeb.Endpoint
     end
   end
-
 end

@@ -5,6 +5,7 @@ defmodule PokerWeb.Presence do
   See the [`Phoenix.Presence`](http://hexdocs.pm/phoenix/Phoenix.Presence.html)
   docs for more details.
   """
-  use Phoenix.Presence, otp_app: :poker,
-                        pubsub_server: Poker.PubSub
+  use Phoenix.Presence,
+    otp_app: :poker,
+    pubsub_server: Poker.PubSub
 end

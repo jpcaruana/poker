@@ -7,14 +7,15 @@ defmodule PokerWeb.RoomController do
 
   alias Poker.Room.Auth
 
-  def show(conn, %{"id"=> id}) do
+  def show(conn, %{"id" => id}) do
     conn
-    |> live_render(RoomLiveView, session:
-      %{
+    |> live_render(RoomLiveView,
+      session: %{
         "room_id" => id,
         "user_token" => conn.assigns.user_token,
         "locale" => get_session(conn, :locale)
-      })
+      }
+    )
   end
 
   def index(conn, _), do: redirect(conn, to: "/")

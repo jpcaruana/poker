@@ -234,6 +234,7 @@ defmodule PokerWeb.RoomLiveView do
 
   defp update_user(params, room_id, user_token) do
     user = Map.merge(get_current_user(room_id, user_token), params)
+
     Presence.update(
       self(),
       topic(room_id),
