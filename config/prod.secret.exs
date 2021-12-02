@@ -4,8 +4,8 @@
 # remember to add this file to your .gitignore.
 use Mix.Config
 
-config :poker, Poker.Repo,
-  ssl: true,
+#config :poker,
+#  ssl: true,
 
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
