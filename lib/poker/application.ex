@@ -7,10 +7,6 @@ defmodule Poker.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Poker.Repo,
-      # Start the Telemetry supervisor
-      PokerWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Poker.PubSub},
       # Start the Endpoint (http/https)
