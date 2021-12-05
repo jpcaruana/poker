@@ -40,11 +40,11 @@
       <div class="centering-container">
         <div class="cards">
           <%= for val <- PokerWeb.RoomLiveView.scores do %>
-            <button class="card <%= if (@current_user[:score] == val), do: 'active'%>"
+            <button class="card < {if (@current_user[:score] == val), do: 'active'} ">
               <%= if @state[:start] do %>
                 phx-click="card"
                 phx-value-num="<%= val %>"
-              <% end %>
+              <% end%>
                 >
                 <%= val %>
             </button>
@@ -61,7 +61,7 @@
               <%= if user.observer do %>
                 <div class="score observer"></div>
               <% else %>
-                <div class="score <%= if (user.score >= 0), do: 'active'%>">
+                <div class="score < {if (user.score >= 0), do: 'active'} >">
                   <%= if @state[:finish] && user.score >= 0 do %>
                     <%= user.score %>
                   <% end %>
@@ -98,7 +98,7 @@
                       </thead>
                       <tbody>
                         <%= for {k,v} <- results do %>
-                          <tr class="<%= if v == max_score, do: "winner" %>">
+                          <tr class="< {if v == max_score, do: "winner"} >">
                             <td><%= k %></td>
                             <td><%= v %></td>
                           </tr>
@@ -123,15 +123,15 @@
     </div>
     <div id="heartbeat"><%= @heartbeat %></div>
   </div>
-  <div id="name" class="<%= if joined?(@current_user), do: 'hidden'%>">
+  <div id="name" class="< {if joined?(@current_user), do: 'hidden'} >">
     <form class="form" phx-change="name-input" onsubmit="return false;">
       <div class="input-wrapper input-wrapper-teal">
         <%= text_input :name, :query, placeholder: gettext("name"), autofocus: true, "phx-debounce": "30", value: @user_name, class: "input" %>
-        <button class="btn btn-teal" phx-click="create_user" phx-value-obs="false" phx-value-name="<%= @user_name %>">
+        <button class="btn btn-teal" phx-click="create_user" phx-value-obs="false" phx-value-name="< {@user_name} >">
           <%= gettext "Join" %>
         </button>
         <button class="btn btn-red ml-2"  phx-click="create_user" phx-value-obs="true"
-                                                                  phx-value-name="<%= @user_name %>" >
+                                                                  phx-value-name="< {@user_name} >" >
                                                                   <%= gettext "Observe" %>
         </button>
       </div>
@@ -140,13 +140,6 @@
     <div class="share-link">
       <h1><%= gettext "Share this link:" %></h1>
       <%= link url, to: url %>
-    </div>
-    <div class="lang">
-      <ul>
-        <li><a href=<%= "#{url}/?locale=en"%>>English</a></li>
-        <li>・</li>
-        <li><a href=<%= "#{url}/?locale=ja"%>>日本語</a></li>
-      </ul>
     </div>
   </div>
 <% end) %>
